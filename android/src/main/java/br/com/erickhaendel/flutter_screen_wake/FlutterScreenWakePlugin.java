@@ -14,6 +14,7 @@ import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.MethodCall;
+import android.util.Log;
 
 /** FlutterScreenWakePlugin */
 public class FlutterScreenWakePlugin implements FlutterPlugin, ActivityAware, MethodCallHandler {
@@ -74,10 +75,10 @@ public class FlutterScreenWakePlugin implements FlutterPlugin, ActivityAware, Me
       case "keepOn":
         boolean on = call.argument("on");
         if (on) {
-          System.out.println("Keeping screen on ");
+          Log.d("SCREEN_WAKE", "Keeping screen on: ON");
           activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         } else {
-          System.out.println("Not keeping screen on");
+          Log.d("SCREEN_WAKE", "Not keeping screen on: OFF");
           activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
         result.success(null);
